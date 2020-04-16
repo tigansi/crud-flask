@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- style.css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+
+    <title>teste</title>
+</head>
+
+<body>
+
+    <nav class="#424242 grey darken-3">
+        <div class="nav-wrapper  container">
+            <a href="#!" class="brand-logo">Crud - Flask</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="sass.html"><i class="material-icons left">account_box</i>Tiago Batista Igansi</a></li>
+                <li><a href="sass.html"><i class="material-icons left">exit_to_app</i>Sair</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="valign-wrapper row painel-box">
+        <div class="col l1"></div>
+        <div class="col l10 s12 m12">
+            <div class="card hoverable">
+                <div class="card-action #1565c0 blue darken-3">
+                    <span class="card-title white-text">Lista de livros</span>
+                </div>
+
+                <div class="card-content">
+                    <button data-target="modal-cadastro-livros"
+                        class="modal-trigger btn waves-effect waves-light green">
+                        livros
+                        <i class="material-icons large left">add</i>
+                    </button>
+
+                    <button data-target="modal-livros-excluidos"
+                        class="blue modal-trigger btn waves-effect waves-light right">
+                        Outros registros
+                        <i class="material-icons large left">folder</i>
+                    </button>
+
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col l12">
+                            <table class="bordered centered">
+                                <thead>
+                                    <tr>
+                                        <th>ISBN</th>
+                                        <th>Título do Livro</th>
+                                        <th>autor</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for result in resultado %}
+                                    <tr>
+                                        <td data-isbn={{result.isbn}}>{{result.isbn}}</td>
+                                        <td>{{result.titulo_livro}}</td>
+                                        <td>{{result.autor}}</td>
+                                        <td>
+                                            <a href="" id="btn-detalhes" data-target="modal-detalhes-livros"
+                                                class="modal-trigger btn waves-effect waves-light">
+                                                Detalhes
+                                                <i class="material-icons left">details</i>
+                                            </a>
+                                            <a href="" id="btn-deletar" data-target="modal-pergunta-exclusao"
+                                                class="modal-trigger red btn waves-effect waves-light">
+                                                Deletar
+                                                <i class="material-icons left">delete</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l1"></div>
+    </div>
+
+    <!-- Modal Cadastro de livro -->
+    {%include 'cadastro/modal-cadastro-livros.html'%}
+
+    <!-- Modal detalhe de livro -->
+    {%include 'cadastro/modal-detalhes-livros.html'%}
+
+    <!-- Modal Exclusão de livro -->
+    {%include 'cadastro/modal-exclusao-livros.html'%}
+
+    <!-- Modal Livros excluidos -->
+    {%include 'cadastro/modal-livros-excluidos.html'%}
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- script-cadastro.js -->
+    <script src="{{url_for('static',filename='js/script-cadastro.js')}}"></script>
+
+    <!-- script-detalhes.js -->
+    <script src="{{url_for('static',filename='js/script-detalhes.js')}}"></script>
+
+    <!-- script-exclusão.js -->
+    <script src="{{url_for('static',filename='js/script-exclusao.js')}}"></script>
+</body>
+
+</html>
